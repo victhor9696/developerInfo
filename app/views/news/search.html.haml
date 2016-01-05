@@ -1,0 +1,12 @@
+%h1
+  =t("form.news")
+  .row
+    - if @news.count  == 0
+      =t("form.not_found")
+    -@news.each do |news|
+      .col-lg-12.miniContant
+        %h2
+          %a{href: "/news/"+news.slug}
+            =news.title
+        %span
+          = news.description.truncate(300)

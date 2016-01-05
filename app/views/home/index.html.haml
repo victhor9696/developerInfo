@@ -1,0 +1,21 @@
+.container
+  %h1.subTitle
+    =t("form.lasted_news")
+  .row
+    -@news.each do |new|
+      .col-lg-6.miniContant
+        %h2
+          %a{href: "/news/"+new.slug}
+            =new.title.truncate(31)
+        %span
+          = new.description.truncate(300)
+  %h1.subTitle
+    =t("form.lasted_videos")
+  .row
+    -@videos.each do |video|
+      .col-lg-6.miniContant
+        %h2
+          %a{href: "/video/"+video.slug}
+            =video.title
+        %span
+          = video.description.truncate(300)

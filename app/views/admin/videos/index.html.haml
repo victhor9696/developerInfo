@@ -1,0 +1,49 @@
+.col-lg-12
+  %h1
+    =t('form.search_video')
+  .panel.panel-default
+    .panel-heading.right
+      .col-lg-8
+        -# -if session[:role]
+        -#   %label{style: "margin-right: 10px;"}
+        -#     %input{type: "radio",name: "user", value: 0,checked: true}
+        -#     =t("form.all_user")
+        -#   %label
+        -#     %input{type: "radio",name: "user", value: 1}
+        -#     =t("form.single_user")
+
+      .input-group.col-lg-4
+        %input.form-control.search{:placeholder => "#{t('form.forSearch')}",name: "query",
+        :type => "text",:value => @query,:id => "search", :autofocus => "true"}
+          %span.input-group-btn.searchBtn
+            %button.btn.btn-default{:type => "button"}
+              %i.glyphicon.glyphicon-search
+    .panel-body
+      %table.table-responsive.table
+        %tr
+          %th
+            =t("video.title_br")
+          %th
+            =t("video.title_es")
+          %th
+            =t("form.status")
+          %th
+            =t("form.action")
+        - @videos.each do |video|
+          %tr
+            %td
+              =video.title_br
+            %td
+              =video.title_es
+            %td
+              =video.which_state
+            %td
+              %a.btn.btn-default{href: "/admin/video/"+video.id.to_s}
+                %i.glyphicon.glyphicon-pencil
+      %ul.pagination
+        - x = 0
+        - while(x <= @qtd_page)
+          %li
+            - x = x + 1
+            %a{:href => "/admin/video?page=#{x}"}
+              =x

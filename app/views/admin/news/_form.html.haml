@@ -1,0 +1,59 @@
+.panel.panel-default
+  .panel-body
+    .row
+      .col-lg-6.col-sm-12
+        .col-lg-12
+          %br
+          %label.control-label
+            =t("news.title_br")
+          %input.form-control{:name => "news[title_br]",:presence => "true",
+          :maxlength => 90,:minlength => 2,:presence => "true", :type => "text",
+          :value => @news.title_br}
+        .col-lg-12
+          %br
+          %label.control-label
+            =t("news.description_br")
+          =text_area(:news, :description_br, cols: 20, rows: 10,class: "form-control")
+      .col-lg-6.col-sm-12
+        .col-lg-12
+          %br
+          %label.control-label
+            =t("news.title_es")
+          %input.form-control{:name => "news[title_es]",:presence => "true",
+          :maxlength => 90,:minlength => 2, :presence => "true", :type => "text",
+          :value => @news.title_br}
+        .col-lg-12
+          %br
+          %label.control-label
+            =t("news.description_es")
+          =text_area(:news, :description_es, cols: 20, rows: 10,class: "form-control")
+    .row
+      .col-lg-12
+        .col-lg-6
+          %br
+          %label.control-label
+            =t("news.tag_names_br")
+          %input.form-control{:name => "tag_names_br",:id => "tag_names_br",:presence => "true",
+          :presence => "true", :type => "text", :value => @news.tag_names_br}
+        .col-lg-6
+          %br
+          %label.control-label
+            =t("news.tag_names_es")
+
+          %input.form-control{:name => "tag_names_es",:id => "tag_names_es",:presence => "true",
+          :presence => "true", :type => "text", :value => @news.tag_names_es}
+    .row
+      .col-lg-12
+        -if session[:role]
+          %br
+          %label{style: "margin-right: 10px;"}
+            %input{type: "radio",name: "news[status]" , value: "1", checked: @news.status == 1 ? true : false}
+            =t("news.notice_active")
+          %label
+            %input{type: "radio",name: "news[status]" , value: "0", checked: @news.status == 0 ? true : false}
+            =t("news.notice_no_active")
+  .panel-footer
+    %button.btn.btn-success.btnnews{type: "button"}
+      =t("save")
+:javascript
+  tag_names();

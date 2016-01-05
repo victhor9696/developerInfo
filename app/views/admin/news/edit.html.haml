@@ -1,0 +1,11 @@
+.col-lg-12
+  %h1
+    =t("news.edit_news")
+  = form_for(@news , url:  "/admin/news/#{@news.id}" ,method: "POST") do |f|
+    = render partial: 'form', locals: { f: f }
+:javascript
+  $(".btnnews").click(function(){
+    if(checkValidation("edit_news")){
+      $(".edit_news").submit();
+    }
+  });

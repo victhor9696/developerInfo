@@ -1,0 +1,11 @@
+.col-lg-12
+  %h1
+    =t("video.edit_video")
+  = form_for(@video , url:  "/admin/video/#{@video.id}" ,method: "POST") do |f|
+    = render partial: 'form', locals: { f: f }
+:javascript
+  $(".btnvideo").click(function(){
+    if(checkValidation("edit_video")){
+      $(".edit_video").submit();
+    }
+  });

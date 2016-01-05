@@ -1,0 +1,23 @@
+.cardLogin
+  %h1.tituloLogin.text-center
+    Developer Info
+  .row
+    .main.bs-example.bs-example-type
+      %form.formRegisterUser{role: "form",action: "/login",id: "formRegisterUser",method: "POST"}
+        %input{:name => "authenticity_token", :type => "hidden" , :value => form_authenticity_token}
+        .form-group
+          %label{:for => "inputUsernameEmail"} E-mail
+          %input#email.form-control{:type => "text",:name => "email",:presence=>"true",:email=>"true",:autofocus => true}/
+        .form-group
+
+          %label{:for => "inputPassword"} Senha
+          %input#password.form-control{:type => "password", :presence=>"true", :name => "password"}/
+        .row
+          .col-xs-6.col-sm-6.col-md-6
+            %a.btn-lg.btn.btn-primary.btn-block{type: "button",id: "login"}
+              =t("form.enter")
+          .col-xs-6.col-sm-6.col-md-6
+            %a.btn-lg.btn.btn-success.btn-block{type: "button",id: "cadastrar"}
+              =t("form.register")
+      %a.pull-right{href: "#"}
+        =t("form.forgot_password")

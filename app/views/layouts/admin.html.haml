@@ -1,0 +1,95 @@
+!!!
+%html{:lang => "en"}
+  %title Developer Info
+  %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+  =stylesheet_link_tag "application", :media=>"all"
+  =javascript_include_tag "application"
+  =csrf_meta_tags
+  %header
+  %body.bodyAdmin
+  .container-fluid
+    .row.menuTopAdmin
+      %a{href: "/"}
+        .col-lg-2.logoAdmin.text-center
+          %p
+            Developer
+            %span
+              %b
+                Info
+      .col-lg-8
+      .col-lg-2.loginTopMenu.text-center
+        -# .icon
+        -#   .dropdown
+        -#     %span.dropdown-toggle{"href"=>"#","data-toggle" => "dropdown", :type => "button"}
+        -#       %i.glyphicon.glyphicon-globe
+        -#       %span.label.label-danger
+        -#         2
+        -#     %ul.dropdown-menu
+        -#       %li
+        -#         %a{:href => "/admin/profile"}
+        -#           =t('form.changeData')
+        -#       %li
+        -#         %a{:href => "/exit"}
+        -#           =t('exit')
+        .icon
+          .dropdown
+            %span.dropdown-toggle{"href"=>"#","data-toggle" => "dropdown", :type => "button"}
+              %i.glyphicon.glyphicon-user
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => "/admin/profile"}
+                  =t('form.changeData')
+              %li
+                %a{:href => "/exit"}
+                  =t('exit')
+
+
+    .row
+      .col-lg-2.sideBar
+        #MainMenu
+          .list-group.panel
+            %a.list-group-item.list-group.strong{"data-parent" => "#MainMenu", "data-toggle" => "collapse", :href => "#demo1"}
+              =t('form.news')
+              %i.fa.fa-caret-down
+            #demo1.collapse
+              %a.list-group-item.subItem{:href => "/admin/news/new"}
+                =t('form.registerNews')
+              %a.list-group-item.subItem{:href => "/admin/news"}
+                =t('form.searchNews')
+            %a.list-group-item.list-group.strong{"data-parent" => "#MainMenu", "data-toggle" => "collapse", :href => "#demo2"}
+              =t('form.video')
+              %i.fa.fa-caret-down
+            #demo2.collapse
+              %a.list-group-item.subItem{:href => "/admin/video/new"}
+                =t('form.register_video')
+              %a.list-group-item.subItem{:href => "/admin/videos"}
+                =t('form.search_video')
+            -if session[:role]
+              %a.list-group-item.list-group.strong{"data-parent" => "#MainMenu", "data-toggle" => "collapse", :href => "#demo3"}
+                =t('form.user')
+                %i.fa.fa-caret-down
+              #demo3.collapse
+                %a.list-group-item.subItem{:href => "/admin/user/new"}
+                  =t('form.registerUser')
+                %a.list-group-item.subItem{:href => "/admin/users"}
+                  =t('form.searchUser')
+              %a.list-group-item.list-group.strong{"data-parent" => "#MainMenu", "data-toggle" => "collapse", :href => "#demo4"}
+                =t('form.comments')
+                %i.fa.fa-caret-down
+              #demo4.collapse
+                %a.list-group-item.subItem{:href => "/admin/comments_news"}
+                  =t('form.list_comments_news')
+                %a.list-group-item.subItem{:href => "/admin/comments_videos"}
+                  =t('form.list_comments_videos')
+
+      .col-lg-10
+        .row
+          - flash.each do |key, value|
+            %div{:class => "alert alert-#{key}",:role => "alert"}
+              = value
+              .close.right
+                %span.closeAlert
+                  x
+          - flash = nil
+          =yield

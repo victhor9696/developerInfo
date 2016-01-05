@@ -1,0 +1,128 @@
+.container
+  %h1.subTitle
+    =@video.title
+  %br
+
+  .row
+    .col-lg-12
+      =raw protect @video.iframe
+
+  %span.fontLarge
+    = raw @video.description.gsub!("\n","<br>")
+  %br
+  %span.fontLarge
+    Tags:
+    %b
+      =@video.tag_names
+  .row
+    .col-lg-6
+      %h1.subTitle
+        =t("form.avaliable")
+      %span
+        =t("video.avg")
+      %br
+      -for i in 1..@avg
+        =image_tag("star-on.png")
+      -for i in 1..5 - @avg
+        =image_tag("star-off.png")
+      %br
+      %br
+      %span
+        =t("video.voted_count")
+        =@voted_count
+      %br
+    .col-lg-6
+      %h1.subTitle
+        =t("form.avaliable_register")
+      .validate{id: "validate"}
+      - add_class = "disabled btn_disabled_avaliable"
+      -if @already_voted
+        -add_class = "btnAvaliable"
+      %button.btn.btn-success{class: add_class }
+        =t("video.avaliable")
+      %input{type: "hidden",name: "video_id",id: "video_id",value: @video.id}
+  .row
+    .col-lg-6
+      %h1.subTitle
+        =t("form.comments")
+      %br
+      %label
+        =t("form.comments")
+      %textArea.form-control{name: "comments",id: "comments",rows: "5"}
+      %button.btn.btn-success{name: "addComment",id: "addComment"}
+        =t("form.send")
+  .row
+    - @comments_videos.each do |comments|
+      .col-lg-12
+        %p
+          %b
+            =comments.email
+        %pre
+          =comments.message
+
+:javascript
+  $("#addComment").click(function(){
+    if($("#comments").val() == ""){
+      alert("#{t('form.comments_not_blank')}");
+      return false;
+    }
+    var data = {
+      video_id: $("#video_id").val(),
+      message: $("#comments").val()
+    };
+    $.ajax({
+      url : "/comments/video",
+      data: data,
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      type: 'POST',
+      dataType: 'json',
+      success: function(data){
+        if(data.status){
+          alert("#{t('comments_news.success_register')}");
+        }else{
+          alert("#{t('comments_news.error_register')}");
+        }
+      }
+    });
+  });
+
+
+  $('#validate').raty({
+    cancel    : true,
+    cancelOff : "#{image_url('cancel-off.png')}",
+    cancelOn  : '#{image_url("cancel-off.png")}',
+    starOff : '#{image_url("star-off.png")}',
+    starOn  : '#{image_url("star-on.png")}'
+  });
+
+  $(".btn_disabled_avaliable").click(function(){
+    alert("#{t('video.arely_voted_error')}")
+  });
+
+  $(".btnAvaliable").click(function(){
+    if( $("input[name=score]").val() == ""){
+      alert("#{t('form.error_score')}");
+      return false;
+    }
+
+    var data = {
+      score: $("input[name=score]").val(),
+      video_id: $("#video_id").val()
+    };
+    $.ajax({
+      url : "/video_avaliable",
+      data: data,
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      type: 'POST',
+      dataType: 'json',
+      success: function(data){
+        if(data.status){
+          $("#btnAvaliable").removeClass(".btnAvaliable");
+          $("#btnAvaliable").addClass(".disabled");
+          alert("#{t('video.success_avaliable')}");
+        }else{
+          alert("#{t('video.error_avaliable')}");
+        }
+      }
+    });
+  });

@@ -1,0 +1,241 @@
+function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+function er_replace( pattern, replacement, subject ){
+	return subject.replace( pattern, replacement );
+}
+
+function validDate(dateHour) {
+    var dataAtual = new Date();
+    var dataInput = new Date();
+    var data = dateHour.split(" ")[0];
+    data = data.split("/");
+    dataAtual.setFullYear(dataAtual.getFullYear(), dataAtual.getDate(),dataAtual.getMonth() );
+    dataInput.setFullYear(data[2], data[0], data[1]);
+    if (dataInput.getTime() >= dataAtual.getTime()) {
+        return true;
+    }
+    return false;
+}
+
+function isCNPJValid(c) {
+    var b = [6,5,4,3,2,9,8,7,6,5,4,3,2];
+    if((c = c.replace(/[^\d]/g,"").split("")).length != 14)
+        return false;
+    for (var i = 0, n = 0; i < 12; n += c[i] * b[++i]);
+    if(c[12] != (((n %= 11) < 2) ? 0 : 11 - n))
+        return false;
+    for (var i = 0, n = 0; i <= 12; n += c[i] * b[i++]);
+    if(c[13] != (((n %= 11) < 2) ? 0 : 11 - n))
+        return false;
+    return true;
+};
+
+function validBusinessHours(dateHour){
+    var hour = dateHour.split(" ")[1];
+    hour = hour.split(":");
+    if((parseInt(hour[0]) >= 8)&&(parseInt(hour[0]) <= 18)){
+        return true
+    }
+    return false;
+}
+
+function validInteger(field){
+    $(field).keyup(function() {
+		var $this = $( this );
+		$this.val( er_replace( /[^0-9]+/g,'', $this.val() ) );
+    });
+}
+
+function removeValidate() {
+    $(".form-group").removeClass("errorRequireClass");
+    $(".form-group").removeClass("has-error");
+    $(".input-group").removeClass("has-error");
+    $(".col-xs-1").removeClass("errorRequireClass");
+    $(".col-xs-2").removeClass("errorRequireClass");
+    $(".col-xs-3").removeClass("errorRequireClass");
+    $(".col-xs-4").removeClass("errorRequireClass");
+    $(".col-xs-5").removeClass("errorRequireClass");
+    $(".col-xs-6").removeClass("errorRequireClass");
+    $(".col-xs-7").removeClass("errorRequireClass");
+    $(".col-xs-8").removeClass("errorRequireClass");
+    $(".col-xs-9").removeClass("errorRequireClass");
+    $(".col-xs-10").removeClass("errorRequireClass");
+    $(".col-lg-11").removeClass("errorRequireClass");
+    $(".col-lg-12").removeClass("errorRequireClass");
+    $(".col-lg-1").removeClass("errorRequireClass");
+    $(".col-lg-2").removeClass("errorRequireClass");
+    $(".col-lg-3").removeClass("errorRequireClass");
+    $(".col-lg-4").removeClass("errorRequireClass");
+    $(".col-lg-5").removeClass("errorRequireClass");
+    $(".col-lg-6").removeClass("errorRequireClass");
+    $(".col-lg-7").removeClass("errorRequireClass");
+    $(".col-lg-8").removeClass("errorRequireClass");
+    $(".col-lg-9").removeClass("errorRequireClass");
+    $(".col-lg-10").removeClass("errorRequireClass");
+    $(".col-lg-11").removeClass("errorRequireClass");
+    $(".col-lg-12").removeClass("errorRequireClass");
+    $(".form-control").removeClass("errorRequire");
+    $(".xerror").remove();
+    $(".xerrorCurrency").remove();
+    $(".noticeError").remove();
+}
+
+function textErrorCheck(value, text) {
+    var pai = $(value).parents()[0];
+    $(value).addClass("errorRequire");
+    $(".fa-circle").addClass("hide");
+    $(pai).addClass("errorRequireClass");
+    $(pai).append('<span class="glyphicon glyphicon-remove form-control-feedback xerror"></span>');
+    $(pai).append('<span class="noticeError">'+text+'</span>');
+    rollScroll();
+}
+
+function checkValidation(form) {
+    removeValidate();
+    var error = 0;
+    $("." + form + " .form-control").each(function(index, value) {
+        if ($(value).attr("presence") == 'true') {
+            $(".presenceCircleCurrency").hide();
+            $(".presenceCircle").hide();
+            if ($(value).val() == "") {
+                error++
+                var MaxPai = $(value).parents()[1];
+                var pai = $(value).parents()[0];
+                var addClass = "xerror";
+                if ($(value).hasClass('currency') || $(value).hasClass('integer')) {
+                    addClass = 'xerrorCurrency';
+                    $(MaxPai).append('<span class="noticeError"><%= I18n.t("form.not_blank")%></br></span>');
+                } else {
+                    $(pai).append('<span class="noticeError"><%= I18n.t("form.not_blank")%></br></span>');
+                }
+                $(value).addClass("errorRequire");
+                $(pai).addClass("has-error");
+                $(pai).append('<span class="glyphicon glyphicon-remove  ' + addClass + '"></span>');
+                $(".fa-circle").addClass("hide");
+                rollScroll();
+            }
+        }
+        if ($(value).val()) {
+            if ($(value).val().length > $(value).attr("maxlength")) {
+                error++
+                textErrorCheck(value,'<%= I18n.t("form.max_field")%><b>' + $(value).attr("maxlength") + '</b> <%= I18n.t("form.characterer")%>.</br>');
+            }
+
+            if ($(value).val().length < $(value).attr("minlength")) {
+                error++
+                textErrorCheck(value,'<%= I18n.t("form.max_field")%> <b>' + $(value).attr("minlength") + '</b> <%= I18n.t("form.characterer")%>.</br>');
+            }
+
+            if ($(value).attr("email") == 'true') {
+                if (!validateEmail($(value).val())) {
+                    error++;
+                    textErrorCheck(value,"<%= I18n.t('error.email_valid') %></br>");
+                }
+            }
+
+            if ($(value).attr("validDate") == 'true') {
+                if (!validDate($(value).val())) {
+                    error++;
+                    textErrorCheck(value,"<%= I18n.t('error.date_valid') %>");
+                }
+            }
+
+            if ($(value).attr("businessHours") == 'true') {
+                if (!validBusinessHours($(value).val())) {
+                    error++;
+                    textErrorCheck(value,"<%= I18n.t('error.hours_valid') %>");
+                }
+            }
+
+            if($(value).attr("cnpj") == 'true'){
+              if(!isCNPJValid($(value).val())){
+                error++;
+                textErrorCheck(value,"Cnpj inválido");
+              }
+            }
+        }
+    });
+    if (error > 0) {
+        return false;
+    }
+
+    $(".currency").each(function(key, value) {
+        var newValue = $(value).val();
+        newValue = newValue.replace(".", "");
+        newValue = newValue.replace(",", ".");
+        newValue = parseFloat(newValue);
+        $(value).val(newValue);
+    });
+    return true;
+}
+
+function insertIconPresence(){
+  $(".form-control").each(function(index,value){
+    if($(value).attr("presence") == 'true'){
+      var pai  = $(value).parents()[0];
+      $(pai).append('<span class="glyphicon presence"><i class="fa fa-circle glyphicon glyphicon-certificate"></i></span>');
+    }
+    if ($(value).attr("integer") == 'true') {
+          validInteger(value);
+    }
+
+  });
+}
+
+function setFields(fields) {
+    if (!fields) {
+        return false;
+    }
+    for (var key in fields) {
+        var field = $("input[name='" + key + "']");
+        var type = field.attr("type");
+        if (((type == "text") && (!field.hasClass("data"))) || (type == "hidden") || (type == "email")) {
+            field.attr('value', fields[key]);
+        } else if ((type == "text") && (field.hasClass("data"))) {
+            field.attr('value', formataData(fields[key]));
+        } else if ((type == "radio")) {
+            $("input[name='" + key + "'][value='" + fields[key] + "'] ").prop('checked', true);
+        } else if ($("select[name='" + key + "']").length > 0) {
+            var seg = $("#" + key + " option[value='" + fields[key] + "']");
+            seg.prop('selected', true);
+        } else {
+            if (fields[key])
+                $("textarea[name='" + key + "']").html(fields[key]);
+        }
+    }
+}
+
+function data() {
+    $.noConflict();
+    $(".data").datepicker({
+        dateFormat: 'dd/mm/yy',
+        dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+        dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+        dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+        monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+        nextText: 'Próximo',
+        prevText: 'Anterior'
+    });
+}
+
+function currency() {
+    $(".currency").maskMoney({
+        allowNegative: false,
+        thousands: ".",
+        decimal: ",",
+        affixesStay: false
+    });
+}
+
+function rollScroll() {
+    var $target =   $(".has-error")
+    $('html, body').stop().animate({
+        'scrollTop': $target.offset().top-300
+    }, 900, 'swing', function() {
+        window.location.hash = $target;
+    });
+    return;
+}

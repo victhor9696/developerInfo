@@ -1,0 +1,71 @@
+.panel.panel-default
+  .panel-body
+    .row
+      .col-lg-6.col-sm-12
+        .col-lg-12
+          %br
+          %label.control-label
+            =t("video.title_br")
+          %input.form-control{:name => "video[title_br]",:presence => "true",
+          :maxlength => 90,:minlength => 2,:presence => "true", :type => "text",
+          :value => @video.title_br}
+        .col-lg-12
+          %br
+          %label.control-label
+            =t("video.description_br")
+          =text_area(:video, :description_br, cols: 20, rows: 10,class: "form-control")
+      .col-lg-6.col-sm-12
+        .col-lg-12
+          %br
+          %label.control-label
+            =t("video.title_es")
+          %input.form-control{:name => "video[title_es]",:presence => "true",
+          :maxlength => 90,:minlength => 2, :presence => "true", :type => "text",
+          :value => @video.title_es}
+        .col-lg-12
+          %br
+          %label.control-label
+            =t("video.description_es")
+          =text_area(:video, :description_es, cols: 20, rows: 10,class: "form-control")
+    .row
+      .col-lg-12
+        .col-lg-6
+          %br
+          %label.control-label
+            =t("news.tag_names_br")
+          %input.form-control{:name => "tag_names_br",:id => "tag_names_br",:presence => "true",
+          :presence => "true", :type => "text", :value => @video.tag_names_br}
+        .col-lg-6
+          %br
+          %label.control-label
+            =t("news.tag_names_es")
+          %input.form-control{:name => "tag_names_es",:id => "tag_names_es",:presence => "true",
+          :presence => "true", :type => "text", :value => @video.tag_names_es}
+    .row
+      .col-lg-12
+        .col-lg-12
+          %br
+          %label
+            =t("video.iframe")
+          %textarea.form-control{:name => "video[iframe]",
+          :presence => "true", :type => "text",:value => @video.iframe,:rows => 10}
+            =@video.iframe.nil? ? "" : @video.iframe
+    .row
+      .col-lg-12
+        .col-lg-4
+          -if session[:role]
+            %label{style: "margin-right: 10px;"}
+              %input{type: "radio",name: "video[status]" , value: "1", checked: @video.status == 1 ? true : false}
+              =t("video.notice_active")
+            %label
+              %input{type: "radio",name: "video[status]" , value: "0", checked: @video.status == 0 ? true : false}
+              =t("video.notice_no_active")
+        .col-lg-8.col-sm-12.text-right
+          -if !@video.iframe.nil?
+            =raw protect @video.iframe
+  .panel-footer
+    %button.btn.btn-success.btnvideo{type: "button"}
+      =t("save")
+
+:javascript
+  tag_names();

@@ -1,0 +1,38 @@
+!!! html5
+%html
+  %title Developer Info
+  %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+  =stylesheet_link_tag "application", :media=>"all"
+  =javascript_include_tag "application"
+  =csrf_meta_tags
+  %header
+  %body
+    .container-fluid.text-center.menuTop
+      .container
+        .col-lg-1
+          =image_tag "logodeveloperInfo2.png", {width: '50px'}
+        .col-lg-3
+          %a{href: "/"}
+            %b
+              %p.blackBlue
+                Developer
+                %span.infoLogo
+                  Info
+        .col-lg-6
+          .input-group.col-md-12.searchClass
+            %input.form-control.input-md{:placeholder => "Buscar", :type => "text",id: "query"}/
+            %span.input-group-btn.search
+              %button.btn.btn-info.btn-md{:type => "button"}
+                %i.glyphicon.glyphicon-search
+        .col-lg-2
+          %br
+          %a.textLogin{href: "/login"}
+            %b
+              =t("form.login_register")
+    .container
+      - flash.each do |key, value|
+        %div{:class => "alert alert-#{key}",:role => "alert"}
+          = value
+      - flash = nil
+      .row
+        =yield

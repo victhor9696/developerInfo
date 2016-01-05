@@ -1,0 +1,51 @@
+.panel.panel-default
+  .panel-body
+    .row
+      .col-lg-4
+        %label.control-label
+          =t("user.nome")
+        %input.form-control{:name => "user[name]",:maxlength => 40,:minlength => 2,
+        :presence => "true", :type => "text",:value => @user.name}/
+      .col-lg-4
+        %label.control-label
+          =t("user.email")
+        %input.form-control.phone{:name => "user[email]" ,:presence => "true",
+        :type => "text" ,:email => "true",:value => @user.email }/
+    %br
+    .row
+      .col-lg-4
+        %label.control-label
+          =t("user.password")
+        %input.form-control{:name => "user[password]", :id=> "password",  :type => "password" }/
+      .col-lg-4
+        %label.control-label
+          =t("user.plain_password")
+        %input.form-control{:name => "user[plain_password]", :id=> "plain_password", :type => "password" }/
+    %br
+    .row
+      .col-lg-4
+        %span
+          =t("user.flat_active")
+        .row
+          .col-lg-4
+            %label.control-label
+              %input{:name => "user[status]",:type => "radio",:value=>0,:checked => @user.status == 0 ? true : false}/
+              =t("form.no")
+          .col-lg-4
+            %label.control-label
+              %input{:name => "user[status]",:type => "radio",:value=>1,:checked => @user.status == 1 ? true : false}/
+              =t("form.yes")
+      -if session[:role]
+        .col-lg-4
+          %span
+            =t("user.role")
+          %select.form-control{:name => "user[role]"}
+            -User::role.each do |key,value|
+              -check_role = false
+              -if(@user.role == key)
+                - check_role = true
+              %option{value: key, selected: check_role}
+                =value
+  .panel-footer
+    %button.btn.btn-success.btnUser{type: "button"}
+      =t("save")

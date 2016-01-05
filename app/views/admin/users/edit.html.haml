@@ -1,0 +1,16 @@
+.col-lg-12
+  %h1
+    =t("user.user_edit")
+  = form_for(@user , url:  "/admin/user/#{@user.id}" ,method: "POST",name: "formUser",id: "formUser",class: "formUser") do |f|
+    = render partial: 'form', locals: { f: f }
+:javascript
+  $(".btnUser").click(function(){
+    if(checkValidation("edit_user")){
+      if($("#plain_password").val() != $("#password").val()){
+        alert("#{t('error.dif_password')}");
+        return false;
+      }else{
+        $(".edit_user").submit();
+      }
+    }
+  });

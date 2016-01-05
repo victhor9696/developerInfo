@@ -1,0 +1,21 @@
+.col-lg-12
+  %h1
+    =t("user.user_edit")
+  = form_for(@user , url:  "/admin/user" ,method: "POST") do |f|
+    = render partial: 'form', locals: { f: f }
+:javascript
+  $(".btnUser").click(function(){
+    if(checkValidation("new_user")){
+      if(($("#plain_password").val() == "")||($("#password").val() == "")){
+        alert('#{t("user.password_not_blank")}');
+        return false;
+      }
+
+      if($("#plain_password").val() != $("#password").val()){
+        alert("#{t('error.dif_password')}");
+        return false;
+      }else{
+        $(".new_user").submit();
+      }
+    }
+  });

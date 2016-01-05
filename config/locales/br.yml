@@ -1,0 +1,339 @@
+pt-BR:
+  exit: "Sair"
+  save: "Salvar"
+  user:
+    success: "Usuário salvo com successo."
+    success_destroy: "Usuário deletado com sucesso."
+    user_edit: "Editar usuário"
+    flat_active: "Usuário está ativo?"
+    password: "Senha"
+    plain_password: "Confirme a senha"
+    role: "Cargo no sistema"
+    password_not_blank: "Senha não pode ficar em branco"
+    user_not_found: "Usuário não foi encontrado."
+    error_save: "Error ao salvar, confira os dados e tente novamente."
+  news:
+    edit_news: "Editar notícia"
+    avaliable: "Avaliar notícia"
+    success: "Noticia salva com successo."
+    success_destroy: "Noticia deletada com sucesso."
+    tag_names_es: "Tags em espanhol"
+    title: "Título"
+    tag_names_br: "Tags em portugues"
+    avg: "Média das notas"
+    success_avaliable: "Voto registrado com sucesso"
+    voted_count: "Total de votos: "
+    error_avaliable: "erro ao registar voto, tente novamente mais tarde"
+    arely_voted_error: "Esse usuário jà votou"
+    notice_active: "Notícia Ativa"
+    notice_no_active: "Notícia Desativada"
+    title_br: "Título em português"
+    title_es: "Título em espanhol"
+    description_br: "Descrição em português"
+    description_es: "Descrição em espanhol"
+    new_news: "Nova notícia"
+    news_edit: "Editar noticia"
+    news_not_found: "Noticia não foi encontrado."
+    error_save: "Error ao salvar, confira os dados e tente novamente."
+  video:
+    success: "Vídeo salva com successo."
+    title: "Título"
+    edit_video: "Editar vídeo"
+    notice_active: "Vídeo ativo"
+    notice_no_active: "Vídeo desativada"
+    title_br: "Título em português"
+    title_es: "Título em espanhol"
+    avg: "Média das notas"
+    success_avaliable: "Voto registrado com sucesso"
+    voted_count: "Total de votos: "
+    error_avaliable: "erro ao registar voto, tente novamente mais tarde"
+    arely_voted_error: "Esse usuário jà votou"
+    description_br: "Descrição em português"
+    description_es: "Descrição em espanhol"
+    new_video: "Novo vídeo"
+    iframe: "Iframe"
+    video_edit: "Editar vídeo"
+    video_not_found: "Vídeo não foi encontrado."
+    error_save: "Error ao salvar, confira os dados e tente novamente."
+  error:
+    info-email: "Entre com seu email."
+    info-password: "Entre com sua senha."
+    dif_password: "Senhas estão diferentes, digite novamente"
+    error_password: "As senhas estão diferentes, por esse motivo não foi registrado a alteração de senha"
+    info-email-password: "Entre com seu email e senha."
+    email_valid: "Digite um email válido."
+    not_permission: "Você não tem permissão para acessar essa pagina."
+    fail-login: "Falha ao tentar logar, Usuário ou senha incorretos."
+  comments_news:
+    message: "mensagens"
+    news: "noticia"
+    status: "status"
+    success_register: "Comentário cadastrado com sucesso"
+    error_register: "erro, preencha os dados corretamente"
+    update: "Comentário salvo com sucesso"
+    destroy: "Comentário deletado com sucesso"
+  comments_video:
+    message: "mensagens"
+    news: "noticia"
+    status: "status"
+    success_register: "Comentário cadastrado com sucesso"
+    error_register: "erro, preencha os dados corretamente"
+    update: "Comentário salvo com sucesso"
+    destroy: "Comentário deletado com sucesso"
+  success:
+    welcome: "Bem vindo!..."
+  form:
+    news: "Notícias"
+    not_blank: "Campo nao pode ficar em branco."
+    not_found: "nem uma notícia encontrada"
+    destroy_comment: "Reprovar comentários selecionados"
+    accept_comment: "Aceitar comentários selecionados"
+    lasted_news: Últimas notícias
+    lasted_videos: Últimos vídeos
+    yes: "sim"
+    comments_not_blank: "Comentário não pode ficar em branco"
+    comments: "Comentários"
+    send: "enviar"
+    check_comments: "Selecione algum comentário"
+    no: "não"
+    searchcomments_news: "lista de comentarios"
+    comments: "Comentários"
+    searchcomments_video: "Lista de comentários dos vídeos"
+    list_comments_news: "Lista de comentários de notícias"
+    list_comments_videos: "Lista de comentários de vídeos"
+    login_register: Login | Cadastro
+    error_score: "Clique no score  desejado."
+    single_user: "Apenas esse usuário"
+    all_user: "Todos usuários"
+    avaliable: "Avaliação"
+    avaliable_register: "De sua nota para essa notícia."
+    forSearch: "Procurando por..."
+    forgot_password: "Esqueceu sua senha?"
+    searchNews: "Lista de notícias"
+    changeData: "Alterar dados do usuário"
+    registerNews: "Cadastrar notícias"
+    register: "Cadastrar"
+    news: "Notícias"
+    action: "Ações"
+    video: "Videos"
+    searchnews: "Listar notíficias"
+    userAdmin: "Administrador"
+    userComm: "Usuário comun"
+    statusTrue: "Ativo"
+    statusFalse: "Inativo"
+    register_video: "Cadastrar vídeo"
+    search_video: "Lista de vídeos"
+    enter: "Entrar"
+    max_field: "Esse campo deve ter no maximo "
+    characterer: "caracteres"
+    not_blank: "Esse campo nao pode ficar em branco"
+    date_valid: "Data inválida, por favor digite uma data no presente."
+    hours_valid: "Horário inválido, por favor entre com um horário comercial, das 08:00 as 18:00"
+    registerUser: "Cadastrar usuário"
+    searchUser: "Listagem de usuário"
+    user: "Usuário"
+  date:
+    abbr_day_names:
+    - Dom
+    - Seg
+    - Ter
+    - Qua
+    - Qui
+    - Sex
+    - Sáb
+    abbr_month_names:
+    -
+    - Jan
+    - Fev
+    - Mar
+    - Abr
+    - Mai
+    - Jun
+    - Jul
+    - Ago
+    - Set
+    - Out
+    - Nov
+    - Dez
+    day_names:
+    - Domingo
+    - Segunda-feira
+    - Terça-feira
+    - Quarta-feira
+    - Quinta-feira
+    - Sexta-feira
+    - Sábado
+    formats:
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      short: "%d de %B"
+    month_names:
+    -
+    - Janeiro
+    - Fevereiro
+    - Março
+    - Abril
+    - Maio
+    - Junho
+    - Julho
+    - Agosto
+    - Setembro
+    - Outubro
+    - Novembro
+    - Dezembro
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: aproximadamente 1 hora
+        other: aproximadamente %{count} horas
+      about_x_months:
+        one: aproximadamente 1 mês
+        other: aproximadamente %{count} meses
+      about_x_years:
+        one: aproximadamente 1 ano
+        other: aproximadamente %{count} anos
+      almost_x_years:
+        one: quase 1 ano
+        other: quase %{count} anos
+      half_a_minute: meio minuto
+      less_than_x_minutes:
+        one: menos de um minuto
+        other: menos de %{count} minutos
+      less_than_x_seconds:
+        one: menos de 1 segundo
+        other: menos de %{count} segundos
+      over_x_years:
+        one: mais de 1 ano
+        other: mais de %{count} anos
+      x_days:
+        one: 1 dia
+        other: "%{count} dias"
+      x_minutes:
+        one: 1 minuto
+        other: "%{count} minutos"
+      x_months:
+        one: 1 mês
+        other: "%{count} meses"
+      x_seconds:
+        one: 1 segundo
+        other: "%{count} segundos"
+    prompts:
+      day: Dia
+      hour: Hora
+      minute: Minuto
+      month: Mês
+      second: Segundo
+      year: Ano
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: deve ser aceito
+      blank: não pode ficar em branco
+      present: deve ficar em branco
+      confirmation: não é igual a %{attribute}
+      empty: não pode ficar vazio
+      equal_to: deve ser igual a %{count}
+      even: deve ser par
+      exclusion: não está disponível
+      greater_than: deve ser maior que %{count}
+      greater_than_or_equal_to: deve ser maior ou igual a %{count}
+      inclusion: não está incluído na lista
+      invalid: não é válido
+      less_than: deve ser menor que %{count}
+      less_than_or_equal_to: deve ser menor ou igual a %{count}
+      not_a_number: não é um número
+      not_an_integer: não é um número inteiro
+      odd: deve ser ímpar
+      record_invalid: 'A validação falhou: %{errors}'
+      restrict_dependent_destroy:
+        one: Não é possível excluir o registro pois existe um %{record} dependente
+        many: Não é possível excluir o registro pois existem %{record} dependentes
+      taken: já está em uso
+      too_long: 'é muito longo (máximo: %{count} caracteres)'
+      too_short: 'é muito curto (mínimo: %{count} caracteres)'
+      wrong_length: não possui o tamanho esperado (%{count} caracteres)
+      other_than: deve ser diferente de %{count}
+    template:
+      body: 'Por favor, verifique o(s) seguinte(s) campo(s):'
+      header:
+        one: 'Não foi possível gravar %{model}: 1 erro'
+        other: 'Não foi possível gravar %{model}: %{count} erros.'
+  helpers:
+    select:
+      prompt: Por favor selecione
+    submit:
+      create: Criar %{model}
+      submit: Salvar %{model}
+      update: Atualizar %{model}
+  number:
+    currency:
+      format:
+        delimiter: "."
+        format: "%u %n"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: R$
+    format:
+      delimiter: "."
+      precision: 3
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion:
+            one: bilhão
+            other: bilhões
+          million:
+            one: milhão
+            other: milhões
+          quadrillion:
+            one: quatrilhão
+            other: quatrilhões
+          thousand: mil
+          trillion:
+            one: trilhão
+            other: trilhões
+          unit: ''
+      format:
+        delimiter: "."
+        precision: 2
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: "."
+        format: "%n%"
+    precision:
+      format:
+        delimiter: "."
+  support:
+    array:
+      last_word_connector: " e "
+      two_words_connector: " e "
+      words_connector: ", "
+  time:
+    am: ''
+    formats:
+      default: "%a, %d de %B de %Y, %H:%M:%S %z"
+      long: "%d de %B de %Y, %H:%M"
+      short: "%d de %B, %H:%M"
+    pm: ''

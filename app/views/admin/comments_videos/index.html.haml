@@ -1,0 +1,50 @@
+.col-lg-12
+  %h1
+    =t('form.searchcomments_video')
+  %form{role: "form",action: "/admin/comments/valid_video",id: "formValidComments",method: "POST"}
+    %input{:name => "authenticity_token", :type => "hidden" , :value => form_authenticity_token}
+    .panel.panel-default
+      .panel-heading
+        %button.btn.btn-success{id: "accept",value: 1}
+          =t("form.accept_comment")
+        %button.btn.btn-danger{id: "destroy",value: 0}
+          =t("form.destroy_comment")
+        %input{type: "hidden",value: 0, name: "flag",id: "flag"}
+      .panel-body
+        %table.table-responsive.table
+          %tr
+            %th
+              =t("comments_video.message")
+            %th
+              =t("video.title")
+            %th
+              =t("form.user")
+            %th
+              =t("form.status")
+            %th
+              =t("form.action")
+          - @comments_video.each do |comments|
+            %tr
+              %td
+                =comments.message
+              - if I18n.locale == :"pt-BR"
+                %td
+                  =comments.title_br
+              - else
+                %td
+                  =comments.title_es
+              %td
+                =comments.email
+              %td
+                =comments.which_state
+              %td
+                %input.select{type: "checkbox",name: "select[]",value: comments.id}
+:javascript
+  $(".btn").click(function(){
+     if($(".select:checkbox:checked").length <= 0){
+       alert("#{t('form.check_comments')}");
+       return false;
+     }
+     $("#flag").attr("value", $(this).val());
+     $("#formValidComments").submit();
+  });

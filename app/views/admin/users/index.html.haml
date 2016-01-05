@@ -1,0 +1,45 @@
+.col-lg-12
+  %h1
+    =t('form.searchUser')
+  .panel.panel-default
+    .panel-heading.right
+      .col-lg-8
+      .input-group.col-lg-4
+        %input.form-control{:placeholder => "#{t('form.forSearch')}", :type => "text",
+        :value => @query, id: "search",:autofocus => true }
+          %span.input-group-btn.searchBtn
+            %button.btn.btn-default{:type => "button"}
+              %i.glyphicon.glyphicon-search
+    .panel-body
+      %table.table-responsive.table
+        %tr
+          %th
+            =t("fom.name")
+          %th
+            =t("fom.email")
+          %th
+            =t("fom.status")
+          %th
+            =t("fom.role")
+          %th
+            =t("fom.action")
+        - @users.each do |user|
+          %tr
+            %td
+              =user.name
+            %td
+              =user.email
+            %td
+              =user.which_state
+            %td
+              =user.is_role
+            %td
+              %a.btn.btn-default{href: "/admin/user/"+user.id.to_s}
+                %i.glyphicon.glyphicon-pencil
+      %ul.pagination
+        - x = 0
+        - while(x <= @qtd_page)
+          %li
+            - x = x + 1
+            %a{:href => "/admin/users?page=#{x}"}
+              =x

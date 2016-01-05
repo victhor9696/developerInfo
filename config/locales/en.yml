@@ -1,0 +1,7 @@
+en:
+  error:
+    info-email: "Enter your email"
+    info-password: "Enter your password"
+    info-email-password: "Enter your password and email"
+  form:
+    forgot_password: "sua mae"
